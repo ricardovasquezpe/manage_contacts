@@ -92,7 +92,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "fullName" : "Carla",
+    "fullName" : "Juan",
     "birthDate" : "22-04-2020",
     "address": {
         "city" : "Trujillo",
