@@ -8,6 +8,14 @@ SpringBoot Version: 2.3.2.RELEASE
 SpringBoot Starter Cache: 1.3.0.RELEASE
 jUnit Version: 4.12
 
+## First Step
+You need to run the manage_contact.sql file in your mysql database in order to create the database and tables.
+The file is located in "/src/main/resources"
+
+## Unit Test
+There is 1 unit test created under this location "/src/test/java/com/test/managecontacts/controller"
+
+## Endpoints
 ## GetAllContacts
 **You get:** List of contacts created with their address
 
