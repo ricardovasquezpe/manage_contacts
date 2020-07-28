@@ -1,75 +1,103 @@
-# API Documentation Example
-This API uses `POST` request to communicate and HTTP [response codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) to indenticate status and errors. All responses come in standard JSON. All requests must include a `content-type` of `application/json` and the body must be valid JSON.
+# Manage Contacts Documentation
+This is a REST API built in Java with SpringBoot to Manage Contacts.
 
-## Response Codes 
-### Response Codes
-```
-200: Success
-400: Bad request
-401: Unauthorized
-404: Cannot be found
-405: Method not allowed
-422: Unprocessable Entity 
-50X: Server Error
-```
-### Error Codes Details
-```
-100: Bad Request
-110: Unauthorized
-120: User Authenticaion Invalid
-130: Parameter Error
-140: Item Missing
-150: Conflict
-160: Server Error
-```
-### Example Error Message
-```json
-http code 402
-{
-    "code": 120,
-    "message": "invalid crendetials",
-    "resolve": "The username or password is not correct."
-}
-```
+## Dependencies used 
+Java Version: 14
+Maven Version: 4.0.0
+SpringBoot Version: 2.3.2.RELEASE
+SpringBoot Starter Cache: 1.3.0.RELEASE
+jUnit Version: 4.12
 
-## Login
-**You send:**  Your  login credentials.
-**You get:** An `API-Token` with wich you can make further actions.
+## GetAllContacts
+**You get:** List of contacts created with their address
 
 **Request:**
 ```json
-POST /login HTTP/1.1
+GET /api/contacts HTTP/1.1
 Accept: application/json
-Content-Type: application/json
-Content-Length: xy
-
-{
-    "username": "foo",
-    "password": "1234567" 
-}
 ```
 **Successful Response:**
 ```json
 HTTP/1.1 200 OK
-Server: My RESTful API
 Content-Type: application/json
-Content-Length: xy
+
+[
+    {
+        "id": 1,
+        "fullName": "Ricardo",
+        "birthDate": "2020-04-22T00:00:00.000+00:00",
+        "address": {
+            "id": 1,
+            "city": "Lima",
+            "postalCode": "01"
+        }
+    },
+    {
+        "id": 2,
+        "fullName": "Carla",
+        "birthDate": "2020-04-22T00:00:00.000+00:00",
+        "address": {
+            "id": 2,
+            "city": "Chiclayo",
+            "postalCode": "02"
+        }
+    }
+]
+```
+
+## GetAllContactsByPostalCode
+**You get:** List of contacts created with their address by PostalCode
+
+**Request:**
+```json
+GET /api/contacts/search?postalCode=01 HTTP/1.1
+Accept: application/json
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+        "id": 1,
+        "fullName": "Ricardo",
+        "birthDate": "2020-04-22T00:00:00.000+00:00",
+        "address": {
+            "id": 1,
+            "city": "Lima",
+            "postalCode": "01"
+        }
+    }
+]
+```
+
+
+## InsertNewContact
+**You send:** New Contact information
+**You get:** New ID Contact Created
+
+**Request:**
+```json
+GET /api/contacts HTTP/1.1
+Accept: application/json
+Content-Type: application/json
 
 {
-   "apitoken": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-   "expirationDate": "2018-02-13T15:31:55.559Z"
+    "fullName" : "Carla",
+    "birthDate" : "22-04-2020",
+    "address": {
+        "city" : "Trujillo",
+        "postalCode" : "03"
+    }
 }
 ```
-**Failed Response:**
+**Successful Response:**
 ```json
-HTTP/1.1 401 Unauthorized
-Server: My RESTful API
+HTTP/1.1 201 CREATED
 Content-Type: application/json
-Content-Length: xy
 
 {
-    "code": 120,
-    "message": "invalid crendetials",
-    "resolve": "The username or password is not correct."
+    "contactId": 3
 }
-``` 
+```
