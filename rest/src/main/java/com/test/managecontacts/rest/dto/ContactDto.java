@@ -7,7 +7,7 @@ public class ContactDto {
 
     private String fullName;
 
-    private Date birthDate;
+    private String birthDate;
 
     public Long getId() {
         return id;
@@ -25,11 +25,11 @@ public class ContactDto {
         this.fullName = fullName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 }

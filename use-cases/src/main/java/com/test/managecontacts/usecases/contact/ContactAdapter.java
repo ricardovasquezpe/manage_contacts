@@ -10,5 +10,9 @@ public interface ContactAdapter {
 
     Contact insertContact(Contact contact);
 
-    List<Contact> searchContacts(String name, Date bithDate);
+    List<Contact> searchContacts(String name, Date birthDate);
+
+    Contact getContactById(Long id);
+
+    Contact updateContactById(Long id, Contact contact);
 }

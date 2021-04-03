@@ -1,4 +1,4 @@
-package com.test.managecontacts.rest;
+package com.test.managecontacts.rest.payload;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -3,15 +3,17 @@ package com.test.managecontacts.rest;
 import com.test.managecontacts.rest.dto.ContactDto;
 import com.test.managecontacts.rest.mapper.ContactDtoMapper;
 import com.test.managecontacts.rest.mapper.ContactRequestMapper;
-import com.test.managecontacts.usecases.contact.GetAllContactsUseCase;
+import com.test.managecontacts.rest.payload.ContactRequest;
+import com.test.managecontacts.rest.payload.UpdateContactRequest;
+import com.test.managecontacts.usecases.contact.*;
 import com.test.managecontacts.entity.Contact;
-import com.test.managecontacts.usecases.contact.InsertContactUseCase;
-import com.test.managecontacts.usecases.contact.SearchContactsUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,12 @@ public class ContactController {
     @Autowired
     private SearchContactsUseCase searchContactsUseCase;
 
+    @Autowired
+    private GetContactUseCase getContactUseCase;
+
+    @Autowired
+    private UpdateContactUseCase updateContactUseCase;
+
     @GetMapping
     public ResponseEntity<List<ContactDto>> getAllContacts() {
         List<Contact> list = getAllContactsUseCase.get();
@@ -42,10 +50,26 @@ public class ContactController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<ContactDto>> searchContacts(
-            @RequestParam(value = "name", required = true) String name) {
-        List<Contact> list = searchContactsUseCase.search(name, null);
+    public ResponseEntity<List<ContactDto>> searchContacts(@RequestParam(value = "name", required = true)
+                                                                       String name,
+                                                           @RequestParam(value = "birthDate", required = true)
+                                                           @DateTimeFormat(pattern="dd-MM-yyyy")
+                                                                   Date birthDate) {
+        List<Contact> list = searchContactsUseCase.search(name, birthDate);
         List<ContactDto> listDto = ContactDtoMapper.mapListEntityToDto(list);
         return new ResponseEntity<List<ContactDto>>(listDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ContactDto> getContact(@PathVariable Long id) {
+        Contact contact = getContactUseCase.get(id);
+        return new ResponseEntity<ContactDto>(ContactDtoMapper.mapEntityToDto(contact), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContactDto> updateContact(@PathVariable Long id,
+                                                    @Valid @RequestBody UpdateContactRequest updateContactRequest) {
+        Contact contact = updateContactUseCase.update(id, ContactRequestMapper.contactUpdateRequestToEntity(updateContactRequest));
+        return new ResponseEntity<ContactDto>(ContactDtoMapper.mapEntityToDto(contact), HttpStatus.OK);
     }
 }

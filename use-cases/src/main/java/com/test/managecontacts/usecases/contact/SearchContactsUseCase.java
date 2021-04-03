@@ -12,7 +12,7 @@ public class SearchContactsUseCase {
         this.adapter = adapter;
     }
 
-    public List<Contact> search(String name, Date bithDate){
-        return adapter.searchContacts(name, bithDate);
+    public List<Contact> search(String name, Date birthDate){
+        return adapter.searchContacts(name, birthDate);
     }
 }

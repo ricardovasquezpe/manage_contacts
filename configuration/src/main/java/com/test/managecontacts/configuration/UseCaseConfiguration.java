@@ -1,10 +1,7 @@
 package com.test.managecontacts.configuration;
 
-import com.test.managecontacts.usecases.contact.ContactAdapter;
-import com.test.managecontacts.usecases.contact.GetAllContactsUseCase;
+import com.test.managecontacts.usecases.contact.*;
 import com.test.managecontacts.db.ContactAdapterImpl;
-import com.test.managecontacts.usecases.contact.InsertContactUseCase;
-import com.test.managecontacts.usecases.contact.SearchContactsUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +21,16 @@ public class UseCaseConfiguration {
     @Bean
     public SearchContactsUseCase searchContactsUseCase(ContactAdapter contactAdapter) {
         return new SearchContactsUseCase(contactAdapter);
+    }
+
+    @Bean
+    public GetContactUseCase getContactUseCase(ContactAdapter contactAdapter) {
+        return new GetContactUseCase(contactAdapter);
+    }
+
+    @Bean
+    public UpdateContactUseCase updateContactUseCase(ContactAdapter contactAdapter) {
+        return new UpdateContactUseCase(contactAdapter);
     }
 
     @Bean
