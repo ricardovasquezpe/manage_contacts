@@ -44,7 +44,7 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<ContactDto> addContact(@RequestBody ContactRequest contactRequest) {
+    public ResponseEntity<ContactDto> addContact(@Valid @RequestBody ContactRequest contactRequest) {
         Contact contactResponse = insertContactUseCase.insert(ContactRequestMapper.mapRequestToEntity(contactRequest));
         return new ResponseEntity<ContactDto>(ContactDtoMapper.mapEntityToDto(contactResponse), HttpStatus.CREATED);
     }
