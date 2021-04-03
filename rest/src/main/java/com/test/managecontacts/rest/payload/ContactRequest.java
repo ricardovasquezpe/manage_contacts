@@ -13,6 +13,12 @@ public class ContactRequest {
     @Size(max = 100)
     private String fullName;
 
+    @JsonProperty("password")
+    @NotEmpty(message = "Please provide a password")
+    @Size(max = 100)
+    @Size(min = 8)
+    private String password;
+
     @JsonProperty("birthDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Past
@@ -33,5 +39,13 @@ public class ContactRequest {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

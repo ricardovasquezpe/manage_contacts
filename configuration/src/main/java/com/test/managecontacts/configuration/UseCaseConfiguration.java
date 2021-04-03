@@ -34,6 +34,11 @@ public class UseCaseConfiguration {
     }
 
     @Bean
+    public MultiSearchUseCase multiSearchUseCase(ContactAdapter contactAdapter) {
+        return new MultiSearchUseCase(contactAdapter);
+    }
+
+    @Bean
     public ContactAdapter contactAdapter() {
         return new ContactAdapterImpl();
     }

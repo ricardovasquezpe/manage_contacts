@@ -9,6 +9,8 @@ public class ContactDto {
 
     private String birthDate;
 
+    private String password;
+
     public Long getId() {
         return id;
     }
@@ -31,5 +33,13 @@ public class ContactDto {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

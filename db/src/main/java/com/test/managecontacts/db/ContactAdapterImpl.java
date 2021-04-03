@@ -9,6 +9,7 @@ import com.test.managecontacts.usecases.contact.exception.ResourceNotFoundExcept
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ContactAdapterImpl implements ContactAdapter {
@@ -57,5 +58,15 @@ public class ContactAdapterImpl implements ContactAdapter {
         contactMapperService.updateContactFromEntity(contact, model);
         ContactModel result = this.contactRepository.save(model);
         return ContactMapper.convertModelToEntity(result);
+    }
+
+    @Override
+    public List<Contact> multiSearchContacts(Map<String, Object> params) {
+        StringBuilder search = new StringBuilder();
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            search.append("AND " + entry.getKey() + " = " + entry.getValue());
+        }
+        List<ContactModel> list = this.contactRepository.searchContacsByMultiParams(search.toString());
+        return ContactMapper.convertListModelToEntity(list);
     }
 }

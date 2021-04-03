@@ -29,6 +29,7 @@ public class ContactDtoMapper {
         contactDto.setId(model.getId());
         contactDto.setFullName(model.getFullName());
         contactDto.setBirthDate(date);
+        contactDto.setPassword(model.getPassword());
 
         return contactDto;
     }

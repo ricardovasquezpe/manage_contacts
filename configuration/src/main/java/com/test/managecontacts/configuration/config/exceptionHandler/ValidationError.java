@@ -1,4 +1,4 @@
-package com.test.managecontacts.configuration.config;
+package com.test.managecontacts.configuration.config.exceptionHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidationError {
-    
+
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<String> errors = new ArrayList<>();
 

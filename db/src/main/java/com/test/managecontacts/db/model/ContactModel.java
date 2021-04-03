@@ -24,6 +24,9 @@ public class ContactModel {
     @Column(name = "birth_date")
     private Date birthDate;
 
+    @Column(name = "password")
+    private String password;
+
     public Long getId() {
         return id;
     }
@@ -46,5 +49,13 @@ public class ContactModel {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

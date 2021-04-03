@@ -7,6 +7,8 @@ public class Contact {
 
     private String fullName;
 
+    private String password;
+
     private Date birthDate;
 
     public Long getId() {
@@ -31,5 +33,13 @@ public class Contact {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

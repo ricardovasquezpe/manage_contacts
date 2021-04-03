@@ -10,6 +10,7 @@ public class ContactRequestMapper {
         Contact contact = new Contact();
         contact.setFullName(request.getFullName());
         contact.setBirthDate(request.getBirthDate());
+        contact.setPassword(request.getPassword());
 
         return contact;
     }

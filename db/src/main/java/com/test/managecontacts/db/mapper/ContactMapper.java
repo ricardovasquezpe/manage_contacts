@@ -23,6 +23,7 @@ public class ContactMapper {
         contact.setId(model.getId());
         contact.setFullName(model.getFullName());
         contact.setBirthDate(model.getBirthDate());
+        contact.setPassword(model.getPassword());
 
         return contact;
     }
@@ -35,6 +36,7 @@ public class ContactMapper {
         }
         model.setFullName(entity.getFullName());
         model.setBirthDate(entity.getBirthDate());
+        model.setPassword(entity.getPassword());
 
         return model;
     }

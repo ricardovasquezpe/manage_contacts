@@ -1,4 +1,4 @@
-package com.test.managecontacts.configuration.config;
+package com.test.managecontacts.configuration.config.exceptionHandler;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;

@@ -11,6 +11,10 @@ import java.util.List;
 
 @Repository
 public interface ContactRepository extends JpaRepository<ContactModel, Long> {
+
     @Query(value = "SELECT * FROM contacts WHERE full_name LIKE CONCAT('%',:name,'%') AND birth_date > :birthDate", nativeQuery = true)
     List<ContactModel> searchContactByParams(@Param("name") String name, @Param("birthDate") Date bithDate);
+
+    @Query(value = "SELECT * FROM contacts WHERE 1 = 1 :params", nativeQuery = true)
+    List<ContactModel> searchContacsByMultiParams(@Param("params") String params);
 }

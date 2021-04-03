@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/contacts")
@@ -35,6 +36,9 @@ public class ContactController {
 
     @Autowired
     private UpdateContactUseCase updateContactUseCase;
+
+    @Autowired
+    private MultiSearchUseCase multiSearchUseCase;
 
     @GetMapping
     public ResponseEntity<List<ContactDto>> getAllContacts() {
@@ -71,5 +75,12 @@ public class ContactController {
                                                     @Valid @RequestBody UpdateContactRequest updateContactRequest) {
         Contact contact = updateContactUseCase.update(id, ContactRequestMapper.contactUpdateRequestToEntity(updateContactRequest));
         return new ResponseEntity<ContactDto>(ContactDtoMapper.mapEntityToDto(contact), HttpStatus.OK);
+    }
+
+    @PostMapping("/multi-search")
+    public ResponseEntity<List<ContactDto>> multiSearch(@RequestBody Map<String, Object> payload) {
+        List<Contact> list = multiSearchUseCase.multiSearch(payload);
+        List<ContactDto> listDto = ContactDtoMapper.mapListEntityToDto(list);
+        return new ResponseEntity<List<ContactDto>>(listDto, HttpStatus.OK);
     }
 }

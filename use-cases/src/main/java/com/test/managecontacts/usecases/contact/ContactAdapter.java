@@ -4,6 +4,7 @@ import com.test.managecontacts.entity.Contact;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface ContactAdapter {
     List<Contact> getAllContacts();
@@ -15,4 +16,6 @@ public interface ContactAdapter {
     Contact getContactById(Long id);
 
     Contact updateContactById(Long id, Contact contact);
+
+    List<Contact> multiSearchContacts(Map<String, Object> params);
 }

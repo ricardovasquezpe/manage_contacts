@@ -1,4 +1,4 @@
-package com.test.managecontacts.configuration.config;
+package com.test.managecontacts.configuration.config.exceptionHandler;
 
 public class ExceptionResponse {
 
