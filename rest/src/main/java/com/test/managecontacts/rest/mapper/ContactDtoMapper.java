@@ -2,7 +2,6 @@ package com.test.managecontacts.rest.mapper;
 
 import com.test.managecontacts.entity.Contact;
 import com.test.managecontacts.rest.dto.ContactDto;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
