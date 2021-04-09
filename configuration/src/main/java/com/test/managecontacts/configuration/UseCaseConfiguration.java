@@ -2,6 +2,7 @@ package com.test.managecontacts.configuration;
 
 import com.test.managecontacts.usecases.contact.*;
 import com.test.managecontacts.db.ContactAdapterImpl;
+import com.test.managecontacts.usescases.security.LoginUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,6 +37,11 @@ public class UseCaseConfiguration {
     @Bean
     public MultiSearchUseCase multiSearchUseCase(ContactAdapter contactAdapter) {
         return new MultiSearchUseCase(contactAdapter);
+    }
+
+    @Bean
+    public LoginUseCase loginUseCase(ContactAdapter contactAdapter) {
+        return new LoginUseCase(contactAdapter);
     }
 
     @Bean

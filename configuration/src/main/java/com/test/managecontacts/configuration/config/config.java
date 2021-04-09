@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
+/*@Configuration
 public class config implements WebMvcConfigurer {
 
     @Override
@@ -21,4 +21,6 @@ public class config implements WebMvcConfigurer {
                 .allowedMethods("PUT", "DELETE", "GET", "POST")
                 .allowCredentials(false).maxAge(3600);
     }
-}
+}*/
+
+public class config {}

@@ -41,7 +41,6 @@ public class ContactController {
     private MultiSearchUseCase multiSearchUseCase;
 
     @GetMapping
-    @CrossOrigin
     public ResponseEntity<List<ContactDto>> getAllContacts() {
         List<Contact> list = getAllContactsUseCase.get();
         List<ContactDto> listDto = ContactDtoMapper.mapListEntityToDto(list);
